@@ -1,5 +1,3 @@
-#%%
-from os import path
 from urllib import request
 import tarfile
 import pandas as pd
@@ -12,12 +10,12 @@ import matplotlib.pyplot as plt
 
 
 # Download file
-if not path.exists("data/TCGA-PANCAN-HiSeq-801x20531.tar.gz"):
-    print("Downloading ...")
-    URL = "https://archive.ics.uci.edu/ml/machine-learning-databases/00401/TCGA-PANCAN-HiSeq-801x20531.tar.gz"
-    response = request.urlretrieve(URL, "data/TCGA-PANCAN-HiSeq-801x20531.tar.gz")
+print("Downloading dataset ...")
+URL = "https://archive.ics.uci.edu/ml/machine-learning-databases/00401/TCGA-PANCAN-HiSeq-801x20531.tar.gz"
+response = request.urlretrieve(URL, "data/TCGA-PANCAN-HiSeq-801x20531.tar.gz")
+
 # open file
-print("Extracting ...")
+print("Extracting files ...")
 file = tarfile.open('data/TCGA-PANCAN-HiSeq-801x20531.tar.gz')
 # extract files
 file.extractall('data/')
@@ -28,9 +26,7 @@ file.close()
 #########################################
 data = pd.read_csv('data/TCGA-PANCAN-HiSeq-801x20531/data.csv', index_col=0)
 labels = pd.read_csv('data/TCGA-PANCAN-HiSeq-801x20531/labels.csv', index_col=0)
-print(data)
-print(labels)
-#%%
+
 #########################################
 #    Data preprocessing and cleaning    #
 #########################################
